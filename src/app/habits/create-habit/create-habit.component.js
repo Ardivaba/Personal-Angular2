@@ -14,7 +14,7 @@ var CreateHabitComponent = (function () {
     CreateHabitComponent.prototype.saveHabit = function (title, description, trigger) {
         console.log(title + description + trigger);
         this.habitsService.createHabit(title, description, trigger);
-        this.router.navigate(["/habits"]);
+        //this.router.navigate(["/habits"]);
     };
     CreateHabitComponent.prototype.ngOnInit = function () {
     };

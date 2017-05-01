@@ -1,0 +1,33 @@
+﻿<div class="container">
+  <h1>Add book</h1>
+  <p>Here you can add new books.</p>
+  <form #data (ngSubmit)="addBook(title.value, author.value, description.value, coverUrl.value)">
+    <div class="form-group row">
+      <label for="book-title" class="col-2 col-form-label">Title</label>
+      <div class="col-10">
+        <input #title class="form-control" type="text" value="Some book" id="book-title">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="book-author" class="col-2 col-form-label">Author</label>
+      <div class="col-10">
+        <input #author class="form-control" type="text" value="John Doe" id="book-author">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="book-description" class="col-2 col-form-label">Description</label>
+      <div class="col-10">
+        <input #description class="form-control" type="text" value="Some really good book" id="book-description">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="book-cover-url" class="col-2 col-form-label">Url</label>
+      <div class="col-10">
+        <input #coverUrl class="form-control" type="text" value="https://books.google.ee/books/content?id=0s-RlyINlKwC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73F9mmWzgBzLMUZPaQbx-jbt0hEsaJLU4tUENJIrM25NzcSHA6U8W_B1XrXO1mR31UpbtzZAF-pQIP2UKOMZhWiHXDNyLk9n3ZoOfLxWvGcLjDKf5eX7bdOaQgWRejL155b3NiP" id="book-cover-url">
+      </div>
+    </div>
+    <div class="form-group row">
+      <button type="submit" class="btn btn-primary">Add book</button>
+    </div>
+  </form>
+</div>

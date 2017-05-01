@@ -17,7 +17,7 @@ export class CreateHabitComponent implements OnInit {
     console.log(title + description + trigger);
 
     this.habitsService.createHabit(title, description, trigger);
-    this.router.navigate(["/habits"]);
+    //this.router.navigate(["/habits"]);
   }
 
   ngOnInit() {

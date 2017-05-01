@@ -13,12 +13,24 @@ import { CreateHabitComponent } from './habits/create-habit/create-habit.compone
 import { HabitsService } from './habits/habits.service';
 import { HabitComponent } from './habits/habit/habit.component';
 
+import { AuthService } from "./user/auth.service";
+
+import { ListBooksComponent } from './books/list-books/list-books.component';
+import { AddBookComponent } from './books/add-book/add-book.component';
+import { BookComponent } from './books/book/book.component';
+
+import { BooksService } from './books/books.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     ListHabitsComponent,
     CreateHabitComponent,
-    HabitComponent
+    HabitComponent,
+
+    ListBooksComponent,
+    AddBookComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +38,7 @@ import { HabitComponent } from './habits/habit/habit.component';
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [HabitsService],
+  providers: [HabitsService, AuthService, BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
