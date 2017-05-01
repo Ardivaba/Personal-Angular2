@@ -1,0 +1,14 @@
+﻿<div class="container">
+  <h1>List of habits</h1>
+  <p>Here you can see the current list of habits.</p>
+  <div class="list-group">
+    <a *ngFor="let habit of habitsService.getHabits()" routerLink="/habits/{{habit.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{habit.shortTitle}}</h5>
+        <small>Score: {{habit.score}}</small>
+      </div>
+      <p class="mb-1">{{habit.description}}</p>
+      <small>{{habit.trigger}}</small>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+﻿<div class="container">
+  <h1>Create habit</h1>
+  <p>Here you can create new habits.</p>
+  <form #data (ngSubmit)="saveHabit(title.value, description.value, trigger.value)">
+    <div class="form-group row">
+      <label for="habit-title" class="col-2 col-form-label"> Short Title</label>
+      <div class="col-10">
+        <input #title class="form-control" type="text" value="Pushups" id="habit-title">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="habit-description" class="col-2 col-form-label">Description</label>
+      <div class="col-10">
+        <input #description class="form-control" type="text" value="Pushups after exiting bed" id="habit-description">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="habit-trigger" class="col-2 col-form-label">Triggering action</label>
+      <div class="col-10">
+        <input #trigger class="form-control" type="text" value="Leaving bed" id="habit-trigger">
+      </div>
+    </div>
+    <div class="form-group row">
+      <button type="submit" class="btn btn-primary">Create habit</button>
+    </div>
+  </form>
+</div>

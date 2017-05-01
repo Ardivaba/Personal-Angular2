@@ -1,0 +1,12 @@
+﻿<div class="container">
+  <h1>{{currentHabit.shortTitle}}</h1>
+  <p>{{currentHabit.description}}</p>
+  <p>{{currentHabit.trigger}}</p>
+  <p>Score: {{currentHabit.score}}</p>
+
+  <button class="btn btn-success" (click)="increaseScore()">+</button>
+  <button class="btn btn-danger" (click)="decreaseScore()">-</button>
+  <br />
+  <br />
+  <a class="btn btn-primary" routerLink="/habits">Back to habits</a>
+</div>
