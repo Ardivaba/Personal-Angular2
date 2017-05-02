@@ -9,11 +9,16 @@ import { BooksService, Book } from '../books.service';
 })
 export class BookComponent implements OnInit {
   private book: Book;
+  private loaded: boolean = false;
 
   constructor(private books: BooksService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.book = this.books.getBook(+this.route.snapshot.params["id"]);
+    var self = this;
+    this.books.getBookWeb(+this.route.snapshot.params["id"]).subscribe(book => {
+      this.book = book;
+      this.loaded = true;
+    });
   }
 
   addNote(note: string) {

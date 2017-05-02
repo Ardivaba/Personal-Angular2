@@ -10,9 +10,15 @@ var BookComponent = (function () {
     function BookComponent(books, route) {
         this.books = books;
         this.route = route;
+        this.loaded = false;
     }
     BookComponent.prototype.ngOnInit = function () {
-        this.book = this.books.getBook(+this.route.snapshot.params["id"]);
+        var _this = this;
+        var self = this;
+        this.books.getBookWeb(+this.route.snapshot.params["id"]).subscribe(function (book) {
+            _this.book = book;
+            _this.loaded = true;
+        });
     };
     BookComponent.prototype.addNote = function (note) {
         this.book.notes.push(note);
