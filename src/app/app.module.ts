@@ -21,6 +21,15 @@ import { BookComponent } from './books/book/book.component';
 
 import { BooksService } from './books/books.service';
 
+import { NotesService } from './notes/notes.service';
+import { TimetableComponent } from './timetable/timetable.component';
+
+import { ListVideosComponent } from './videos/list-videos/list-videos.component';
+import { AddVideoComponent } from './videos/add-video/add-video.component';
+import { VideoComponent } from './videos/video/video.component';
+
+import { VideosService } from './videos/video.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +39,12 @@ import { BooksService } from './books/books.service';
 
     ListBooksComponent,
     AddBookComponent,
-    BookComponent
+    BookComponent,
+    TimetableComponent,
+
+    ListVideosComponent,
+    AddVideoComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +52,7 @@ import { BooksService } from './books/books.service';
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [HabitsService, AuthService, BooksService],
+  providers: [HabitsService, AuthService, BooksService, NotesService, VideosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

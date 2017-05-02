@@ -9,12 +9,10 @@ import { Router } from "@angular/router";
 })
 export class AddVideoComponent implements OnInit {
 
-  constructor(private Videos: VideosService, private router: Router) { }
+  constructor(private videos: VideosService, private router: Router) { }
 
-  addVideo(title, author, description, coverUrl) {
-    console.log(title + description);
-
-    this.Videos.addVideo(title, author, description, coverUrl);
+  addVideo(title, description, url) {
+    this.videos.addVideo(title, description, url);
     this.router.navigate(["/videos"]);
   }
 

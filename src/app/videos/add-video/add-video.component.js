@@ -7,13 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var AddVideoComponent = (function () {
-    function AddVideoComponent(Videos, router) {
-        this.Videos = Videos;
+    function AddVideoComponent(videos, router) {
+        this.videos = videos;
         this.router = router;
     }
-    AddVideoComponent.prototype.addVideo = function (title, author, description, coverUrl) {
-        console.log(title + description);
-        this.Videos.addVideo(title, author, description, coverUrl);
+    AddVideoComponent.prototype.addVideo = function (title, description, url) {
+        this.videos.addVideo(title, description, url);
         this.router.navigate(["/videos"]);
     };
     AddVideoComponent.prototype.ngOnInit = function () {

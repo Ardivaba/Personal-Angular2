@@ -6,4 +6,17 @@
   <p>{{book.description}}</p>
 
   <a class="btn btn-primary" routerLink="/books">Back to books</a>
+
+  <hr />
+  <ul>
+    <li *ngFor="let note of book.notes">{{note}}</li>
+  </ul>
+  <form (ngSubmit)="addNote(note.value)">
+    <div class="form-group">
+      <label for="note">Add note</label>
+      <input #note type="text" class="form-control" id="note" placeholder="Some note...">
+      <br />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
 </div>

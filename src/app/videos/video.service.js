@@ -9,7 +9,7 @@ var core_1 = require("@angular/core");
 var VideosService = (function () {
     function VideosService() {
         this.videos = new Array();
-        this.addVideo("National Gallery Talk: Creativity -- and Protest", "Video about something.", "https://www.youtube.com/watch?v=k-dYktgmNUg");
+        this.addVideo("National Gallery Talk: Creativity -- and Protest", "Video about something.", "k-dYktgmNUg");
     }
     VideosService.prototype.addVideo = function (title, description, url) {
         var Video = {

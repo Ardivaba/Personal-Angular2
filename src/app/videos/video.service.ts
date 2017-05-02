@@ -13,7 +13,7 @@ export class VideosService {
   private videos: Array<Video> = new Array<Video>();
 
   constructor() {
-    this.addVideo("National Gallery Talk: Creativity -- and Protest", "Video about something.", "https://www.youtube.com/watch?v=k-dYktgmNUg");
+    this.addVideo("National Gallery Talk: Creativity -- and Protest", "Video about something.", "k-dYktgmNUg");
   }
 
   addVideo(title, description, url) {

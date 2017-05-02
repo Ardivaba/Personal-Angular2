@@ -16,4 +16,9 @@ export class BookComponent implements OnInit {
     this.book = this.books.getBook(+this.route.snapshot.params["id"]);
   }
 
+  addNote(note: string) {
+    this.book.notes.push(note);
+    this.books.updateBook(this.book);
+  }
+
 }

@@ -7,10 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var ListBooksComponent = (function () {
-    function ListBooksComponent(books) {
-        this.books = books;
+    function ListBooksComponent(booksService) {
+        this.booksService = booksService;
     }
     ListBooksComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.booksService.getBooksWeb().subscribe(function (books) { return _this.books = books; });
+        var self = this;
     };
     return ListBooksComponent;
 }());

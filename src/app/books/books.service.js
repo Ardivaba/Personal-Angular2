@@ -6,8 +6,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+require("rxjs/add/operator/map");
 var BooksService = (function () {
-    function BooksService() {
+    function BooksService(http) {
+        this.http = http;
         this.books = new Array();
         this.addBook("Think And Grow Rich", "Napoleon Hill", "Great book from Napolen Hill", "https://books.google.ee/books/content?id=0s-RlyINlKwC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73F9mmWzgBzLMUZPaQbx-jbt0hEsaJLU4tUENJIrM25NzcSHA6U8W_B1XrXO1mR31UpbtzZAF-pQIP2UKOMZhWiHXDNyLk9n3ZoOfLxWvGcLjDKf5eX7bdOaQgWRejL155b3NiP");
         this.addBook("How To Win Friends And Influence People", "Andrew Carnegie", "Amazing book from Andrew Carnegie", "https://books.google.ee/books/content?id=0s-RlyINlKwC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73F9mmWzgBzLMUZPaQbx-jbt0hEsaJLU4tUENJIrM25NzcSHA6U8W_B1XrXO1mR31UpbtzZAF-pQIP2UKOMZhWiHXDNyLk9n3ZoOfLxWvGcLjDKf5eX7bdOaQgWRejL155b3NiP");
@@ -19,15 +21,31 @@ var BooksService = (function () {
             title: title,
             description: description,
             author: author,
-            coverUrl: coverUrl
+            coverUrl: coverUrl,
+            notes: new Array()
         };
         this.books.push(book);
     };
     BooksService.prototype.getBook = function (id) {
+        console.log("Yay!");
+        console.log(this.getBooksWeb());
         return this.books[id];
+    };
+    BooksService.prototype.getBooksWeb = function () {
+        return this.http.get("http://localhost:4300/api/books/").map(function (res) {
+            var json = res.json();
+            var books = new Array();
+            for (var i = 0; i < json.length; i++) {
+                books.push(JSON.parse(json[i]));
+            }
+            return books;
+        });
     };
     BooksService.prototype.getBooks = function () {
         return this.books;
+    };
+    BooksService.prototype.updateBook = function (book) {
+        this.books[book.id] = book;
     };
     return BooksService;
 }());

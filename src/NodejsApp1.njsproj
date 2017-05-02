@@ -47,6 +47,8 @@
   <ItemGroup>
     <Folder Include="app" />
     <Folder Include="app\habits" />
+    <Folder Include="app\books\" />
+    <Folder Include="app\notes\" />
     <Folder Include="assets" />
     <Folder Include="environments" />
   </ItemGroup>

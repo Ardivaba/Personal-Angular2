@@ -14,6 +14,10 @@ var BookComponent = (function () {
     BookComponent.prototype.ngOnInit = function () {
         this.book = this.books.getBook(+this.route.snapshot.params["id"]);
     };
+    BookComponent.prototype.addNote = function (note) {
+        this.book.notes.push(note);
+        this.books.updateBook(this.book);
+    };
     return BookComponent;
 }());
 BookComponent = __decorate([

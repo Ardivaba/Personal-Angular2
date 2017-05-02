@@ -7,10 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var ListVideosComponent = (function () {
-    function ListVideosComponent(videos) {
+    function ListVideosComponent(videos, sanitizer) {
         this.videos = videos;
+        this.sanitizer = sanitizer;
     }
     ListVideosComponent.prototype.ngOnInit = function () {
+    };
+    ListVideosComponent.prototype.getSafeUrl = function (url) {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     };
     return ListVideosComponent;
 }());
