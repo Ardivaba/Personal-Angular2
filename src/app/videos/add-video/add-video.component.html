@@ -1,0 +1,33 @@
+﻿<div class="container">
+  <h1>Add Video</h1>
+  <p>Here you can add new Videos.</p>
+  <form #data (ngSubmit)="addVideo(title.value, author.value, description.value, coverUrl.value)">
+    <div class="form-group row">
+      <label for="Video-title" class="col-2 col-form-label">Title</label>
+      <div class="col-10">
+        <input #title class="form-control" type="text" value="Some Video" id="Video-title">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Video-author" class="col-2 col-form-label">Author</label>
+      <div class="col-10">
+        <input #author class="form-control" type="text" value="John Doe" id="Video-author">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Video-description" class="col-2 col-form-label">Description</label>
+      <div class="col-10">
+        <input #description class="form-control" type="text" value="Some really good Video" id="Video-description">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Video-cover-url" class="col-2 col-form-label">Url</label>
+      <div class="col-10">
+        <input #coverUrl class="form-control" type="text" value="https://Videos.google.ee/Videos/content?id=0s-RlyINlKwC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73F9mmWzgBzLMUZPaQbx-jbt0hEsaJLU4tUENJIrM25NzcSHA6U8W_B1XrXO1mR31UpbtzZAF-pQIP2UKOMZhWiHXDNyLk9n3ZoOfLxWvGcLjDKf5eX7bdOaQgWRejL155b3NiP" id="Video-cover-url">
+      </div>
+    </div>
+    <div class="form-group row">
+      <button type="submit" class="btn btn-primary">Add Video</button>
+    </div>
+  </form>
+</div>

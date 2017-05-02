@@ -1,0 +1,22 @@
+﻿<div class="container">
+  <h1>{{video.title}}</h1>
+  <br />
+  <img src="{{video.coverUrl}}" />
+  <br />
+  <p>{{video.description}}</p>
+
+  <a class="btn btn-primary" routerLink="/videos">Back to Videos</a>
+
+  <hr />
+  <ul>
+    <li *ngFor="let note of video.notes">{{note}}</li>
+  </ul>
+  <form (ngSubmit)="addNote(note.value)">
+    <div class="form-group">
+      <label for="note">Add note</label>
+      <input #note type="text" class="form-control" id="note" placeholder="Some note...">
+      <br />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
