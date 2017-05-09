@@ -1,6 +1,6 @@
 var nextBookId = -1;
 
-module.exports = function(app, db) {
+module.exports = function(app, db, users) {
 	function headers(res) {
 		res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -8,7 +8,7 @@ module.exports = function(app, db) {
 	}
 
 	function loggedIn(req, res) {
-		if(req.session.userId == null) {
+		if(users[req.body.token] == null) {
 			res.send({error: "Login first!"});
 			return false;
 		}
@@ -20,7 +20,7 @@ module.exports = function(app, db) {
 		nextBookId = result.length;
 	});
 
-	app.get("/api/books/", function(req, res) {
+	app.post("/api/books/", function(req, res) {
 		headers(res);
 		if(!loggedIn(req, res)) return;
 
@@ -29,7 +29,7 @@ module.exports = function(app, db) {
 			var userBooks = [];
 			for(var i = 0; i < result.length; i++) {
 				var book = JSON.parse(result[i]);
-				if(book.userId == req.session.userId) {
+				if(book.userId == users[req.body.token]	) {
 					userBooks.push(book);
 				}
 			}
@@ -38,7 +38,7 @@ module.exports = function(app, db) {
 		});
 	});
 
-	app.get("/api/books/get/:bookId", function(req, res) {
+	app.post("/api/books/get/:bookId", function(req, res) {
 		if(!loggedIn(req, res)) return;
 
 		var bookId = parseInt(req.params.bookId);
@@ -46,7 +46,7 @@ module.exports = function(app, db) {
 			var userBook = null;
 			for(var i = 0; i < result.length; i++) {
 				var book = JSON.parse(result[i]);
-				if(book.userId == req.session.userId && book.bookId == bookId) {
+				if(book.userId == users[req.body.token] && book.bookId == bookId) {
 					userBook = book;
 				}
 			}
@@ -55,21 +55,22 @@ module.exports = function(app, db) {
 		});
 	});
 
-	app.get("/api/books/add/:title/:description/:author/:coverUrl/", function(req, res) {
+	app.post("/api/books/add/", function(req, res) {
 		if(!loggedIn(req, res)) return;
 
-		var title = req.params.title;
-		var description = req.params.description;
-		var author = req.params.author;
-		var coverUrl = req.params.coverUrl;
+		var title = req.body.title;
+		var description = req.body.description;
+		var author = req.body.author;
+		var coverUrl = req.body.coverUrl;
 
 		var book = {
-			userId: req.session.userId,
+			userId: users[req.body.token],
 			bookId: nextBookId,
 			title: title,
 			description: description,
 			author: author,
-			coverUrl: coverUrl
+			coverUrl: coverUrl,
+			notes: []
 		}
 
 		db.rpush("books", JSON.stringify(book));
@@ -81,7 +82,8 @@ module.exports = function(app, db) {
 		nextBookId++;
 	});
 
-	app.get("/api/books/remove/:bookId", function(req, res) {
+	app.post("/api/books/remove/:bookId", function(req, res) {
+		console.log("Removing book...");
 		if(!loggedIn(req, res)) return;
 
 		var removeBookId = parseInt(req.params.bookId);
@@ -92,7 +94,7 @@ module.exports = function(app, db) {
 				var book = JSON.parse(result[i]);
 				var bookId = book.bookId;
 
-				if(bookId == removeBookId && book.userId == req.session.userId) {
+				if(bookId == removeBookId && book.userId == users[req.body.token]) {
 					removed = true;
 					db.lset("books", i, "REMOVED");
 					db.lrem("books", 1, "REMOVED");

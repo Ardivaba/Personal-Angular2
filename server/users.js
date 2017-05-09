@@ -1,6 +1,8 @@
+var crypto = require("crypto");
+
 var nextUserId = -1;
 
-module.exports = function(app, db) {
+module.exports = function(app, db, users) {
 	function headers(res) {
 		res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -19,11 +21,11 @@ module.exports = function(app, db) {
 		});
 	});
 
-	app.get("/api/users/login/:username/:password/", function(req, res) {
+	app.post("/api/users/login/", function(req, res) {
 		headers(res);
 
-		var username = req.params.username;
-		var password = req.params.password;
+		var username = req.body.username;
+		var password = req.body.password;
 
 		db.lrange("users", 0, -1, function(err, result) {
 			for(var i = 0; i < result.length; i++) {
@@ -31,8 +33,12 @@ module.exports = function(app, db) {
 
 				if(user.username == username) {
 					if(user.password == password) {
-						req.session.userId = user.userId;
-						res.send({success: "logged in"});
+						crypto.randomBytes(16, function(err, buffer) {
+							var token = buffer.toString("hex");
+							req.session.userId = user.userId;
+							res.send({success: "logged in", token: token});
+							users[token] = user.userId;
+						});
 						return;
 					}
 				}
