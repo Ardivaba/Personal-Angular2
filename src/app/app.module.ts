@@ -29,6 +29,8 @@ import { AddVideoComponent } from './videos/add-video/add-video.component';
 import { VideoComponent } from './videos/video/video.component';
 
 import { VideosService } from './videos/video.service';
+import { LoginComponent } from './user/login/login.component';
+import { LoginPageComponent } from './user/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { VideosService } from './videos/video.service';
 
     ListVideosComponent,
     AddVideoComponent,
-    VideoComponent
+    VideoComponent,
+    LoginComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

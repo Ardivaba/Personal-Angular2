@@ -14,6 +14,8 @@ import { VideoComponent } from "./videos/video/video.component";
 
 import { TimetableComponent } from "./timetable/timetable.component";
 
+import { LoginPageComponent } from "./user/login-page/login-page.component";
+
 export const appRoutes: Routes = [
   { path: "habits", component: ListHabitsComponent },
   { path: "habits/create", component: CreateHabitComponent },
@@ -27,8 +29,9 @@ export const appRoutes: Routes = [
   { path: "videos/add", component: AddVideoComponent },
   { path: "videos/:id", component: VideoComponent },
 
-  { path: "", redirectTo: "videos", pathMatch: "full" },
-  { path: "user", loadChildren: "app/user/user.module#UserModule" },
+  { path: "user/login", component: LoginPageComponent },  
+
+  { path: "", redirectTo: "user/login", pathMatch: "full" },
 
   { path: "timetable", component: TimetableComponent }
 ]

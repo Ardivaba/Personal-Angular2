@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 export interface Book {
-  id: number;
+  userId: number;
+  bookId: number;
   title: string;
   description: string;
   author: string;
@@ -34,7 +35,8 @@ export class BooksService {
 
   addBook(title, author, description, coverUrl = null) {
     let book: Book = {
-      id: this.books.length,
+      userId: 0,
+      bookId: this.books.length,
       title: title,
       description: description,
       author: author,
@@ -42,7 +44,7 @@ export class BooksService {
       notes: new Array<string>()
     };
 
-    this.http.get("http://localhost:4300/api/books/add/SomeTitle/SomeAuthor/SomeDescription/SomePicureUrl");
+    this.http.get("http://localhost:4300/api/books/add/" + title + "/" + author + "/" + description + "/" + coverUrl + "").map(res => { }).subscribe();
     console.log("Making that http request?");
 
     this.books.push(book);
@@ -55,6 +57,7 @@ export class BooksService {
   getBooksWeb() {
     return this.http.get("http://localhost:4300/api/books/").map(res => {
       let json = res.json();
+      console.log(json);
       let books = new Array<Book>();
       for (let i = 0; i < json.length; i++) {
         books.push(<Book>JSON.parse(json[i]));
@@ -77,7 +80,7 @@ export class BooksService {
   }
 
   updateBook(book: Book) {
-    this.books[book.id] = book;
+    this.books[book.bookId] = book;
   }
 
 }

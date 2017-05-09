@@ -1,25 +1,16 @@
-﻿import { Injectable } from "@angular/core";
-import { IUser } from "./user.model";
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
-Injectable()
+@Injectable()
 export class AuthService {
-    currentUser: IUser;
 
-    loginUser(userName: string, password: string) {
-        this.currentUser = {
-            id: 1,
-            userName: userName,
-            firstName: "John",
-            lastName: "Papa"
-        }
-    }
+  constructor(private http: Http) {
 
-    isAuthenticated() {
-        return !!this.currentUser;
-    }
+  }
 
-    updateCurrentUser(firstName, lastName) {
-        this.currentUser.firstName = firstName;
-        this.currentUser.lastName = lastName;
-    }
+  public login(username, password) {
+    console.log("Logging in 2: " + username + " " + password);
+    this.http.get("http://localhost:4300/api/users/login/" + username + "/" + password).map(res => { return res.json() }).subscribe(res => { console.log(res); console.log(document.cookie); });
+  }
+
 }

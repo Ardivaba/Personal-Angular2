@@ -1,8 +1,8 @@
 ﻿<div class="container" *ngIf="loaded" >
   <h1>{{book.title}}</h1>
   <br />
-  <img src="{{book.coverUrl}}" />
-  <br />
+  <img *ngIf="book.coverUrl != 'None'" src="{{book.coverUrl}}" />
+  <br *ngIf="book.coverUrl != 'None'"/>
   <p>{{book.description}}</p>
 
   <a class="btn btn-primary" routerLink="/books">Back to books</a>

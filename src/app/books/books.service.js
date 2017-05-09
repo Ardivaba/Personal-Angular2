@@ -35,7 +35,7 @@ var BooksService = (function () {
             coverUrl: coverUrl,
             notes: new Array()
         };
-        this.http.get("http://localhost:4300/api/books/add/SomeTitle/SomeAuthor/SomeDescription/SomePicureUrl");
+        this.http.get("http://localhost:4300/api/books/add/" + title + "/" + author + "/" + description + "/" + coverUrl + "").map(function (res) { }).subscribe();
         console.log("Making that http request?");
         this.books.push(book);
     };
